@@ -7,11 +7,11 @@ public class Dot {
     private Snake snake;
     private Dot dot;
     Random random = new Random();
-    public int x = random.nextInt(25) + 1;
-    public int y = random.nextInt(25) + 1;
+    public int x = random.nextInt(Game.WIDTH - 5) + 5;
+    public int y = random.nextInt(Game.HEIGHT - 5) + 5;
 
     public void Move(){
-        x = random.nextInt(25)+1;
-        y = random.nextInt(25)+1;
+        x = random.nextInt(Game.WIDTH - 5)+ 5;
+        y = random.nextInt(Game.HEIGHT - 5) + 5;
     }
 }

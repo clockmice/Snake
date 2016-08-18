@@ -8,6 +8,9 @@ public class Game {
     private Snake snake;
     private Dot dot;
 
+    public static final int WIDTH = 100;
+    public static final int HEIGHT = 30;
+
     public Game(Terminal terminal, Snake snake, Dot dot) {
         this.terminal = terminal;
         this.snake = snake;
@@ -27,17 +30,24 @@ public class Game {
     }
 
     private void GameLogic() {
-        if ((snake.x == dot.x) && (snake.y == dot.y)){
+        //snake.addCell(snake.head);
+        if ((snake.head.x == dot.x) && (snake.head.y == dot.y)){
             dot.Move();
+            snake.addCell(new Cell(snake.head.x, snake.head.y +1));
         }
 
     }
 
     private void UpdateBoard(Terminal terminal, Snake snake, Dot dot) {
         terminal.clearScreen();
-        terminal.moveCursor(snake.x, snake.y);
+        terminal.moveCursor(snake.head.x, snake.head.y);
         terminal.applyForegroundColor(0, 204, 0);
         terminal.putCharacter('O');
+        for (Cell cell : snake.snakeBody) {
+            terminal.moveCursor(cell.x, cell.y);
+            terminal.applyForegroundColor(0, 204, 0);
+            terminal.putCharacter('O');
+        }
         terminal.moveCursor(dot.x, dot.y);
         terminal.applyForegroundColor(200, 0, 0);
         terminal.putCharacter('O');
@@ -46,6 +56,26 @@ public class Game {
     }
 
     private void DrawFrame() {
+        for (int i = 0; i<WIDTH; i++){
+            terminal.moveCursor(i, 0);
+            terminal.applyForegroundColor(255, 255, 255);
+            terminal.putCharacter('-');
+        }
+        for (int i = 0; i<WIDTH; i++){
+            terminal.moveCursor(i, HEIGHT-1);
+            terminal.applyForegroundColor(255, 255, 255);
+            terminal.putCharacter('-');
+        }
+        for (int i = 0; i<HEIGHT; i++){
+            terminal.moveCursor(0, i);
+            terminal.applyForegroundColor(255, 255, 255);
+            terminal.putCharacter('|');
+        }
+        for (int i = 0; i<HEIGHT; i++){
+            terminal.moveCursor(WIDTH-1, i);
+            terminal.applyForegroundColor(255, 255, 255);
+            terminal.putCharacter('|');
+        }
     }
 
     private void GameOver() {
