@@ -46,6 +46,14 @@ public class Game {
                 snake.head.y++;
                 break;
         }
+//blabal
+//blabal
+//blabal
+//blabal
+//blabal
+//blabal
+
+
 
 //        Key key;
 //        key = terminal.readInput();
