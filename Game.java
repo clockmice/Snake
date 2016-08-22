@@ -1,3 +1,4 @@
+import com.googlecode.lanterna.input.Key;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import static sun.audio.AudioPlayer.player;
@@ -22,10 +23,65 @@ public class Game {
 
         do{
             UpdateBoard(terminal, snake, dot);
-            snake.Move();
+            snakeMove(snake);
             GameLogic();
         }
         while (run);
+
+    }
+
+    public void snakeMove(Snake snake) throws InterruptedException {
+        Key key;
+        key = terminal.readInput();
+        Thread.sleep(200);
+        snake.head.y++;
+
+        switch (key.getCharacter()){
+            case 'U':
+                Thread.sleep(200);
+                snake.head.y--;
+                break;
+            case 'D':
+                Thread.sleep(200);
+                snake.head.y++;
+                break;
+        }
+
+//        Key key;
+//        key = terminal.readInput();
+////        do {
+////            Thread.sleep(5);
+////            key = terminal.readInput();
+////        } while (key == null);
+//
+//        if (snake.snakeBody.size()>0) {
+//            snake.MoveBody();
+//        }
+//
+//        while (key== null) {
+//            switch (key.getCharacter()){
+//                case 'U':
+//                    snake
+//                    break;
+//                case 'D':
+//                    if (head.y < Game.HEIGHT - 1) {
+//                        head.y++;
+//                    }
+//                    break;
+//                case 'L':
+//                    if (head.x > 1) {
+//                        head.x--;
+//                    }
+//                    break;
+//                case 'R':
+//                    if (head.x < Game.WIDTH - 1) {
+//                        head.x++;
+//                    }
+//                    break;
+//            }
+//        }
+//
+//        System.out.println(key.getCharacter() + " " + key.getKind());
 
     }
 
